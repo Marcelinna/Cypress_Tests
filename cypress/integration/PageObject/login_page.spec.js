@@ -1,6 +1,5 @@
-class LoginPage
-{
-    visit(url) {
-        cy.visit(url);
-    }
+class LoginPage {
+  visit(url) {
+    cy.visit(url);
+  }
 }
