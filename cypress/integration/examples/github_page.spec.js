@@ -26,4 +26,25 @@ describe("GitHub page tests", () => {
     cy.get('[value="Sign in"]').click();
     cy.get(".flash.flash-full.flash-error").should("be.visible");
   });
+
+  it("Searching input test", () => {
+    cy.visit("https://github.com/");
+    cy.get(".header-search-input").type("node{enter}");
+    cy.url().should("contain", "node");
+  });
+
+  it("Main page contains register field", () => {
+    cy.visit("https://github.com/");
+    cy.get("form").should("exist").and("be.visible");
+    cy.get("label[for='user[login]']").should("have.text", "Username");
+    cy.get("label[for='user[email]']").should("have.text", "Email");
+    cy.get("label[for='user[password]']").should("have.text", "Password");
+    cy.get("button[type='submit']").contains("Sign up for GitHub");
+  });
+
+  it("Pick 'Code review' from tab Why GitHub in nav menu", () => {
+    cy.get(":nth-child(1) > .HeaderMenu-details > .HeaderMenu-summary").click();
+    cy.contains("Code review").click();
+    cy.get("h1").should("have.text", "Write better code");
+  });
 });
